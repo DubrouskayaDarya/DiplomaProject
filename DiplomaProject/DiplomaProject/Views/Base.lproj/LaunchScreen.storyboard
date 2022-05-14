@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,12 +20,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Books online..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2co-Kb-kqV">
                                 <rect key="frame" x="15" y="437" width="384" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" name="AccentColor"/>
+                                <color key="textColor" systemColor="systemTealColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.50585258007049561" green="0.1608264148235321" blue="0.18297922611236572" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="2co-Kb-kqV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="1cI-BR-OzA"/>
                             <constraint firstItem="2co-Kb-kqV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Zeo-k1-xiS"/>
@@ -40,8 +40,11 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

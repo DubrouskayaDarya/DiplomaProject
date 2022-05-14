@@ -9,7 +9,6 @@ import Firebase
 import UIKit
 
 class LoginViewController: UIViewController {
-    // MARK: Internal
 
     var ref: DatabaseReference!
 

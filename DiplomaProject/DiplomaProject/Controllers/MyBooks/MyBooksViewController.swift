@@ -14,59 +14,54 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var user: User!
     var ref: DatabaseReference!
-    var myBooks = [MyBook]()
+    var books: [Book] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+//        tableView.rowHeight = 200
+        
         guard let currentUser = Auth.auth().currentUser else { return }
         user = User(user: currentUser)
-       ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("myBooks")
-        tableView.register(MyBooksTableViewCell.self, forCellReuseIdentifier: "MyBooksCell")
+        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("books")
+        tableView.register(UINib(nibName: "BookTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCellIdentifier")
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        // наблюдатель за значениями
-//        ref.observe(.value) { [weak self] snapshot in
-//            var myBooks = [MyBooks]()
-//            for item in snapshot.children { // вытаскиваем все tasks
-//                guard let snapshot = item as? DataSnapshot,
-//                      let myBook = MyBooks(snapshot: snapshot) else { continue }
-//                myBooks.append(myBook)
-//            }
-//            self?.myBooks = myBooks
-//            self?.tableView.reloadData()
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ref.observe(.value) { [weak self] snapshot in
+            var books = [Book]()
+            for item in snapshot.children {
+                guard let snapshot = item as? DataSnapshot,
+                      let book = Book(snapshot: snapshot) else { continue }
+                books.append(book)
+            }
+            self?.books = books
+            self?.tableView.reloadData()
+        }
+    }
 
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        // удаляем всех Observers
-//        ref.removeAllObservers()
-//    }
-
-    // MARK: Private
-
-//    private func toggleCompletion(_ cell: UITableViewCell, isCompleted: Bool) {
-//        cell.accessoryType = isCompleted ? .checkmark : .none
-//    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ref.removeAllObservers()
+    }
 
     // MARK: UITableViewDelegate, UITableViewDataSource
 
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            7
-//            myBooks.count
+            books.count
         }
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MyBooksCell", for: indexPath)
-            cell.backgroundColor = .clear
-            cell.textLabel?.textColor = .white
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BookCellIdentifier", for: indexPath) as! BookTableViewCell
+//            cell.backgroundColor = .clear
+//            cell.textLabel?.textColor = .white
 
-//            let currentMyBook = myBooks[indexPath.row]
-//            cell.textLabel?.text = currentMyBook.title
-//            toggleCompletion(cell, isCompleted: currentMyBook.completed)
+            let book = books[indexPath.row]
+            cell.configure(with: book)
+            
             return cell
         }
 
@@ -76,8 +71,8 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle != .delete { return }
-            let myBook = myBooks[indexPath.row]
-            myBook.ref?.removeValue()
+            let book = books[indexPath.row]
+            book.ref?.removeValue()
         }
     
     
