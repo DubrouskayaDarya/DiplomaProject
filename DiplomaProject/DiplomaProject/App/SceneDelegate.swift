@@ -21,6 +21,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
 
+        let isApplicationWasLaunchedBefore =
+        UserDefaults.standard.bool(forKey: Constants.UserDefaultsKeys.appicationWasLaunchedKey)
+        UserDefaults.standard.set(true, forKey: Constants.UserDefaultsKeys.appicationWasLaunchedKey)
+
+        if !isApplicationWasLaunchedBefore {
+            try? Auth.auth().signOut()
+        }
+
         let isOnboardingFinished =
             UserDefaults.standard.bool(forKey: Constants.UserDefaultsKeys.isOnboardingFinishedKey)
 

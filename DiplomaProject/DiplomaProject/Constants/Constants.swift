@@ -5,7 +5,6 @@
 //  Created by Дарья Дубровская on 21.04.22.
 //
 
-import Foundation
 import UIKit
 
 enum Constants {
@@ -31,6 +30,7 @@ enum Constants {
 
     enum UserDefaultsKeys {
         static let isOnboardingFinishedKey = "isOnboardingFinishedKey"
+        static let appicationWasLaunchedKey = "appicationWasLaunchedKey"
     }
 
     enum CellIdentifiers {

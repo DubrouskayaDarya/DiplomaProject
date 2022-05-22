@@ -126,10 +126,10 @@ class DetailBookViewController: UIViewController, MFMailComposeViewControllerDel
     @IBAction func shareButtonTouchUpInside(_ sender: Any) {
         let message = """
             Interesting book - \(book.title)
-            \nAuthor - \(book.author)
-            \n Description - \(book.description ?? "")
-            \nLocation - \(book.city)
-            \nPrice - \(book.price ?? "")
+            Author - \(book.author)
+            Description - \(book.description ?? "")
+            Location - \(book.city)
+            Price - \(book.price ?? "")
             """
         let activityViewController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view

@@ -36,6 +36,7 @@
 		92E480422830021C001481B9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E480412830021C001481B9 /* OnboardingViewController.swift */; };
 		92E4804428301DB4001481B9 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4804328301DB4001481B9 /* OnboardingView.swift */; };
 		92E4804B283AC876001481B9 /* UIImageView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4804A283AC876001481B9 /* UIImageView+Helpers.swift */; };
+		92E48052283ADAC8001481B9 /* BaseBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48051283ADAC8001481B9 /* BaseBooksViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		92E480412830021C001481B9 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		92E4804328301DB4001481B9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		92E4804A283AC876001481B9 /* UIImageView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Helpers.swift"; sourceTree = "<group>"; };
+		92E48051283ADAC8001481B9 /* BaseBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBooksViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +105,11 @@
 		9207FC6A280DDFE6008C7CA4 /* DiplomaProject */ = {
 			isa = PBXGroup;
 			children = (
-				92E48049283AC862001481B9 /* Extensions */,
 				9207FC962810ACAF008C7CA4 /* Constants */,
 				9207FC8E2810A23A008C7CA4 /* Models */,
-				9207FC922810A8DB008C7CA4 /* Controllers */,
-				9207FC7F280DE3D5008C7CA4 /* Views */,
+				9207FC922810A8DB008C7CA4 /* View */,
+				9207FC7F280DE3D5008C7CA4 /* Storyboard */,
+				92E48049283AC862001481B9 /* Extensions */,
 				9207FC74280DDFE7008C7CA4 /* Assets.xcassets */,
 				9207FC992811F7A5008C7CA4 /* GoogleService-Info.plist */,
 				9207FC79280DDFE7008C7CA4 /* Info.plist */,
@@ -116,14 +118,14 @@
 			path = DiplomaProject;
 			sourceTree = "<group>";
 		};
-		9207FC7F280DE3D5008C7CA4 /* Views */ = {
+		9207FC7F280DE3D5008C7CA4 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				9207FC71280DDFE6008C7CA4 /* Main.storyboard */,
 				9207FC76280DDFE7008C7CA4 /* LaunchScreen.storyboard */,
 				9207FCD328286963008C7CA4 /* BookTableViewCell.xib */,
 			);
-			path = Views;
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		9207FC80280DE40C008C7CA4 /* App */ = {
@@ -144,18 +146,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		9207FC922810A8DB008C7CA4 /* Controllers */ = {
+		9207FC922810A8DB008C7CA4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9207FC942810AC5C008C7CA4 /* LoginViewController.swift */,
-				9207FCA52815B16B008C7CA4 /* Books */,
-				9207FCD728294B5D008C7CA4 /* BookCell */,
-				9207FCD628294B17008C7CA4 /* DetailBooks */,
-				9207FCC6281D912D008C7CA4 /* MyBooks */,
-				9207FCCD2827E86E008C7CA4 /* Favourites */,
-				92E48045283180ED001481B9 /* Onboarding */,
+				92E48050283ADA62001481B9 /* Common */,
+				92E4804F283ADA30001481B9 /* ViewController */,
+				92E4804D283AD9B5001481B9 /* Cell */,
 			);
-			path = Controllers;
+			path = View;
 			sourceTree = "<group>";
 		};
 		9207FC962810ACAF008C7CA4 /* Constants */ = {
@@ -166,62 +164,11 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		9207FCA52815B16B008C7CA4 /* Books */ = {
-			isa = PBXGroup;
-			children = (
-				9207FCBA281C8684008C7CA4 /* BooksViewController.swift */,
-			);
-			path = Books;
-			sourceTree = "<group>";
-		};
-		9207FCC6281D912D008C7CA4 /* MyBooks */ = {
-			isa = PBXGroup;
-			children = (
-				9207FCC4281D90FD008C7CA4 /* MyBooksViewController.swift */,
-				9207FCC92824492A008C7CA4 /* MyBookViewController.swift */,
-				9207FCCE28284667008C7CA4 /* ImagePicker.swift */,
-			);
-			path = MyBooks;
-			sourceTree = "<group>";
-		};
-		9207FCCD2827E86E008C7CA4 /* Favourites */ = {
-			isa = PBXGroup;
-			children = (
-				9207FCCB2826BD78008C7CA4 /* FavouritesViewController.swift */,
-			);
-			path = Favourites;
-			sourceTree = "<group>";
-		};
-		9207FCD628294B17008C7CA4 /* DetailBooks */ = {
-			isa = PBXGroup;
-			children = (
-				9207FCC7281EA456008C7CA4 /* DetailBookViewController.swift */,
-			);
-			path = DetailBooks;
-			sourceTree = "<group>";
-		};
-		9207FCD728294B5D008C7CA4 /* BookCell */ = {
-			isa = PBXGroup;
-			children = (
-				9207FCC2281D90D0008C7CA4 /* BookTableViewCell.swift */,
-			);
-			path = BookCell;
-			sourceTree = "<group>";
-		};
 		9207FCDD2829835A008C7CA4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		92E48045283180ED001481B9 /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				92E480412830021C001481B9 /* OnboardingViewController.swift */,
-				92E4804328301DB4001481B9 /* OnboardingView.swift */,
-			);
-			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		92E48049283AC862001481B9 /* Extensions */ = {
@@ -230,6 +177,38 @@
 				92E4804A283AC876001481B9 /* UIImageView+Helpers.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		92E4804D283AD9B5001481B9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9207FCC2281D90D0008C7CA4 /* BookTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		92E4804F283ADA30001481B9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				92E48051283ADAC8001481B9 /* BaseBooksViewController.swift */,
+				92E480412830021C001481B9 /* OnboardingViewController.swift */,
+				9207FC942810AC5C008C7CA4 /* LoginViewController.swift */,
+				9207FCBA281C8684008C7CA4 /* BooksViewController.swift */,
+				9207FCC4281D90FD008C7CA4 /* MyBooksViewController.swift */,
+				9207FCCB2826BD78008C7CA4 /* FavouritesViewController.swift */,
+				9207FCC7281EA456008C7CA4 /* DetailBookViewController.swift */,
+				9207FCC92824492A008C7CA4 /* MyBookViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		92E48050283ADA62001481B9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				9207FCCE28284667008C7CA4 /* ImagePicker.swift */,
+				92E4804328301DB4001481B9 /* OnboardingView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +347,7 @@
 				9207FC6C280DDFE6008C7CA4 /* AppDelegate.swift in Sources */,
 				9207FCCF28284667008C7CA4 /* ImagePicker.swift in Sources */,
 				9207FC952810AC5C008C7CA4 /* LoginViewController.swift in Sources */,
+				92E48052283ADAC8001481B9 /* BaseBooksViewController.swift in Sources */,
 				9207FCCC2826BD78008C7CA4 /* FavouritesViewController.swift in Sources */,
 				92E480422830021C001481B9 /* OnboardingViewController.swift in Sources */,
 				9207FC6E280DDFE6008C7CA4 /* SceneDelegate.swift in Sources */,

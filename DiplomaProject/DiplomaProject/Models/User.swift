@@ -9,7 +9,6 @@ import Firebase
 import Foundation
 
 struct User {
-
     init(user: Firebase.User) {
         self.uid = user.uid
         self.email = user.email ?? ""
