@@ -17,7 +17,6 @@ class DetailBookViewController: UIViewController, MFMailComposeViewControllerDel
     var ref: DatabaseReference!
     var favouriteBooks = Set<String>()
 
-
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -39,8 +38,7 @@ class DetailBookViewController: UIViewController, MFMailComposeViewControllerDel
             guard let self = self else { return }
             var favouriteBooks = Set<String>()
             for child in snapshot.children {
-                let snap = child as! DataSnapshot // trmove !
-                let id = snap.value as! String
+                guard let snap = child as? DataSnapshot, let id = snap.value as? String else { continue }
                 favouriteBooks.insert(id)
             }
             self.favouriteBooks = favouriteBooks
@@ -52,13 +50,14 @@ class DetailBookViewController: UIViewController, MFMailComposeViewControllerDel
 
     @IBAction func contactCallTouchUpInside(_ sender: Any) {
 
-        let alertController = UIAlertController(title: "Phone", message: "You can call the owner of the book", preferredStyle: .alert)
+        let alertController =
+            UIAlertController(title: "Phone", message: "You can call the owner of the book", preferredStyle: .alert)
 
         let call = UIAlertAction(title: "Call", style: .default) { [weak self] _ in
             guard let self = self else { return }
             let url = URL(string: "tel://\(self.book.phone)")!
             if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
             }
         }
 
@@ -70,7 +69,8 @@ class DetailBookViewController: UIViewController, MFMailComposeViewControllerDel
 
     @IBAction func contactEmailTouchUpInside(_ sender: Any) {
 //        sendEmail()
-        let alertController = UIAlertController(title: "Email", message: "You can write the owner of the book", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Email",
+                                                message: "You can write the owner of the book", preferredStyle: .alert)
 
         let email = UIAlertAction(title: "Email", style: .default) { [weak self] _ in
             guard let self = self else { return }
@@ -95,10 +95,11 @@ class DetailBookViewController: UIViewController, MFMailComposeViewControllerDel
         }
     }
 
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
         controller.dismiss(animated: true)
     }
-
 
     @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
         do {
@@ -123,10 +124,17 @@ class DetailBookViewController: UIViewController, MFMailComposeViewControllerDel
     }
 
     @IBAction func shareButtonTouchUpInside(_ sender: Any) {
-        let vc = UIActivityViewController(activityItems: ["Interesting book - \(book.title) \nAuthor - \(book.author) \n Description - \(book.description ?? "") \nLocation - \(book.city) \nPrice - \(book.price ?? "")"], applicationActivities: nil)
-        vc.popoverPresentationController?.sourceView = self.view
+        let message = """
+            Interesting book - \(book.title)
+            \nAuthor - \(book.author)
+            \n Description - \(book.description ?? "")
+            \nLocation - \(book.city)
+            \nPrice - \(book.price ?? "")
+            """
+        let activityViewController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
 
-        self.present(vc, animated: true, completion: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
 
     private func setupUIWithData() {

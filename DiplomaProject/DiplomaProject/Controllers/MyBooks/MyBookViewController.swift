@@ -46,17 +46,15 @@ class MyBookViewController: UIViewController {
         cityTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         priceTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         phoneTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        let imageGestureRecognizer = UITapGestureRecognizer(target: nil, action: #selector(self.addImageTouchUpInside(_:)))
-        imageBookView.addGestureRecognizer(imageGestureRecognizer)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let _ = book else { return }
+        guard book != nil else { return }
         setupUIWithData()
     }
 
-    @IBAction @objc func addImageTouchUpInside(_ sender: UIButton) {
+    @IBAction func addImageTouchUpInside(_ sender: UIButton) {
         imagePicker.present(from: sender)
     }
 
@@ -83,20 +81,21 @@ class MyBookViewController: UIViewController {
                 imageUrl: url.absoluteString,
                 ref: self.ref.child(keyValue))
 
-
             self.ref.child(keyValue).setValue(book.convertToDictionary())
             HUD.flash(.success, delay: 0.5)
         }
     }
 
-    private func uploadImage(_ image: UIImage, for bookId: String, completionHandler: @escaping (URL?) -> Void) -> Void {
+    private func uploadImage(_ image: UIImage,
+                             for bookId: String,
+                             completionHandler: @escaping (URL?) -> Void) {
         let ref = Storage.storage().reference().child("images").child(bookId)
         guard let imageData = image.pngData() else { return }
         let metadata = StorageMetadata()
         metadata.contentType = "images/png"
 
         ref.putData(imageData, metadata: metadata) { (metadata, error) in
-            guard let _ = metadata else {
+            guard metadata != nil else {
                 assertionFailure("Can't upload image to firebase: \(String(describing: error))")
                 completionHandler(nil)
                 return
@@ -154,20 +153,5 @@ class MyBookViewController: UIViewController {
 extension MyBookViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
         self.imageBookView.image = image
-    }
-}
-
-extension UIImageView {
-    func addText(_ text: String) {
-        let lblText = UILabel(frame: self.bounds)
-        lblText.text = text
-        lblText.textAlignment = .center
-        self.addSubview(lblText)
-    }
-
-    func removeAll() {
-        for v in self.subviews { //удаляет все, если что-то другое добавили, проверять что v это UILabel
-            v.removeFromSuperview()
-        }
     }
 }

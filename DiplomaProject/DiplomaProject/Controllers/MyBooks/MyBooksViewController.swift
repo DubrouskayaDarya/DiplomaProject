@@ -26,7 +26,8 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let currentUser = Auth.auth().currentUser else { return }
         user = User(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("books")
-        tableView.register(UINib(nibName: "BookTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCellIdentifier")
+        tableView.register(UINib(nibName: "BookTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: Constants.CellIdentifiers.bookCell)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +56,10 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCellIdentifier", for: indexPath) as! BookTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.bookCell,
+                                                       for: indexPath) as? BookTableViewCell else {
+            return UITableViewCell()
+        }
 
         let book = books[indexPath.row]
         cell.configure(with: book)
@@ -67,7 +71,9 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         true
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle != .delete { return }
         let book = books[indexPath.row]
         book.ref?.removeValue()
@@ -79,24 +85,23 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Delete the file
         ref.delete { error in
             if let error = error {
-                // Uh-oh, an error occurred!
+                print(error)
             } else {
-                // File deleted successfully
+                print("File deleted successfully")
             }
         }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let book = books[indexPath.row]
-        performSegue(withIdentifier: "NewBookSegue", sender: book)
+        performSegue(withIdentifier: Constants.Segues.myBook, sender: book)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? MyBookViewController, let book = sender as? Book {
-            vc.book = book
+        if let myBookViewController = segue.destination as? MyBookViewController, let book = sender as? Book {
+            myBookViewController.book = book
         }
     }
-
 
     @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
         do {
@@ -107,4 +112,3 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         dismiss(animated: true, completion: nil)
     }
 }
-

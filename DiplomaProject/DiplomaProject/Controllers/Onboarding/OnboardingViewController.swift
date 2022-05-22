@@ -11,7 +11,6 @@ import PaperOnboarding
 class OnboardingViewController: UIViewController, PaperOnboardingDataSource {
 
     var window: UIWindow?
-    let isOnboardingFinishedKey = "isOnboardingFinishedKey"
 
     @IBOutlet weak var onboardingView: OnboardingView!
 
@@ -30,21 +29,22 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource {
     }
 
     func onboardingItem(at index: Int) -> OnboardingItemInfo {
-
         let backgroundColorOne = UIColor(displayP3Red: 217 / 255, green: 72 / 255, blue: 89 / 255, alpha: 1)
         let backgroundColorTwo = UIColor(displayP3Red: 106 / 255, green: 166 / 255, blue: 211 / 255, alpha: 1)
         let backgroundColorThree = UIColor(displayP3Red: 204 / 255, green: 153 / 255, blue: 255 / 255, alpha: 1)
 
         let bookImage = UIImage(systemName: "books.vertical.circle") as UIImage?
-
         let myBookImage = UIImage(systemName: "person.fill") as UIImage?
-
         let favoritesImage = UIImage(systemName: "bookmark.fill") as UIImage?
 
         return [
             OnboardingItemInfo(informationImage: bookImage!,
                 title: "Books",
-                description: "All users' book announcements are displayed here. \nWhen you click on a book, you can view the detailed information of this book, share the book, call the owner of this book, or add the book to your favorites",
+                description: """
+                            All users' book announcements are displayed here.
+                            When you click on a book, you can view the detailed information of this book,
+                            share the book, call the owner of this book, or add the book to your favorites
+                            """,
                 pageIcon: bookImage!,
                 color: backgroundColorOne,
                 titleColor: UIColor.white,
@@ -54,7 +54,11 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource {
 
             OnboardingItemInfo(informationImage: myBookImage!,
                 title: "My books",
-                description: "Only your added books are displayed here. \nOn this screen, you can also add your book, and when you click on an already added book, you can view the details of the added book and edit your listing",
+                description: """
+                            Only your added books are displayed here.
+                            On this screen, you can also add your book, and when you click on an already added book,
+                            you can view the details of the added book and edit your listing
+                            """,
                 pageIcon: myBookImage!,
                 color: backgroundColorTwo,
                 titleColor: UIColor.white,
@@ -64,7 +68,11 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource {
 
             OnboardingItemInfo(informationImage: favoritesImage!,
                 title: "Favorites",
-                description: "All books that you have added to your favorites are displayed here. \nWhen you click on a book, you can view detailed information about that book, share the book, call the owner of that book, or remove the book from your favorites.",
+                description: """
+                            All books that you have added to your favorites are displayed here.
+                            When you click on a book, you can view detailed information about that book,
+                            share the book, call the owner of that book, or remove the book from your favorites.
+                            """,
                 pageIcon: favoritesImage!,
                 color: backgroundColorThree,
                 titleColor: UIColor.white,
@@ -76,9 +84,7 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource {
     }
 
     @IBAction func skipAction(_ sender: Any) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        view.window?.rootViewController = sb.instantiateViewController(withIdentifier: "LoginViewController")
-        UserDefaults.standard.set(true, forKey: "isOnboardingFinishedKey")
+        view.window?.rootViewController = Constants.ViewControllers.loginViewController
+        UserDefaults.standard.set(true, forKey: Constants.UserDefaultsKeys.isOnboardingFinishedKey)
     }
 }
-

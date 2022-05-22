@@ -234,7 +234,7 @@
                     <connections>
                         <outlet property="signOutButton" destination="C8g-Oi-que" id="6Y1-vb-V0U"/>
                         <outlet property="tableView" destination="foN-iI-av8" id="zZL-vM-oj7"/>
-                        <segue destination="u3m-su-ZIZ" kind="show" identifier="BookToDetailBooksSegue" id="C6e-5G-LLY"/>
+                        <segue destination="u3m-su-ZIZ" kind="show" identifier="bookToDetailBookSegue" id="C6e-5G-LLY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RZt-7W-xnA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -560,7 +560,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="l34-YK-LD0">
                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="2HY-M3-gfu" kind="show" identifier="NewBookSegue" id="Scr-0v-hnW"/>
+                                <segue destination="2HY-M3-gfu" kind="show" identifier="myBookSegue" id="Scr-0v-hnW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -788,7 +788,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="lmT-RN-ENu" id="c3f-hU-4Qo"/>
-                        <segue destination="u3m-su-ZIZ" kind="show" identifier="FavouriteToDetailBooksSegue" id="VgQ-AA-sLB"/>
+                        <segue destination="u3m-su-ZIZ" kind="show" identifier="favouriteToDetailBookSegue" id="VgQ-AA-sLB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVh-Ug-5O1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

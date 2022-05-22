@@ -12,19 +12,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var ref: DatabaseReference!
-    
-    let isOnboardingFinishedKey = "isOnboardingFinishedKey"
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
+
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-        
-        let isOnboardingFinished = UserDefaults.standard.bool(forKey: isOnboardingFinishedKey)
-        
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        
+
+        let isOnboardingFinished =
+            UserDefaults.standard.bool(forKey: Constants.UserDefaultsKeys.isOnboardingFinishedKey)
+
         ref = Database.database().reference(withPath: "users")
 
         let user = Auth.auth().currentUser
@@ -33,11 +32,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         if user == nil {
             initialViewController = isOnboardingFinished ?
-            sb.instantiateViewController(withIdentifier: "LoginViewController") :
-            sb.instantiateViewController(withIdentifier: "OnboardingViewController")
-            
+            Constants.ViewControllers.loginViewController :
+            Constants.ViewControllers.onboardingViewController
         } else {
-            initialViewController = sb.instantiateViewController(withIdentifier: "MainTabBarController")
+            initialViewController = Constants.ViewControllers.mainTabBarController
         }
 
         window.rootViewController = initialViewController

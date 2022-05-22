@@ -10,9 +10,7 @@ import UIKit
 import Kingfisher
 
 class BookTableViewCell: UITableViewCell {
-
     @IBOutlet weak var imageBookView: UIImageView!
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
 
@@ -26,5 +24,4 @@ class BookTableViewCell: UITableViewCell {
         titleLabel?.text = book.title
         authorLabel?.text = book.author
     }
-
 }

@@ -22,8 +22,12 @@ class LoginViewController: UIViewController {
 
         ref = Database.database().reference(withPath: "users")
 
-        NotificationCenter.default.addObserver(self, selector: #selector(kbDidShow), name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(kbDidHide), name: UIWindow.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(kbDidShow),
+                                               name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(kbDidHide),
+                                               name: UIWindow.keyboardWillHideNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +39,7 @@ class LoginViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
+
     @IBAction func loginTappid(_ sender: UIButton) {
         // проверяем все поля
         guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
@@ -45,12 +50,12 @@ class LoginViewController: UIViewController {
 
         // логинемся
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
-            if let _ = error {
+            if error != nil {
                 self?.displayWarningLabel(withText: "Error ocured \nEmail or password entered incorrectly")
-            } else if let _ = user {
+            } else if user != nil {
                 // переходим на новый экран
                 HUD.show(.progress)
-                HUD.hide(afterDelay: 1) { success in
+                HUD.hide(afterDelay: 1) { _ in
                     self?.performSegue(withIdentifier: Constants.Segues.books, sender: nil)
                 }
                 return
@@ -76,7 +81,7 @@ class LoginViewController: UIViewController {
                 guard let user = user else { return }
                 let userRef = self?.ref.child(user.user.uid)
                 userRef?.setValue(["email": user.user.email])
-                HUD.flash(.success, delay: 0.5){ success in
+                HUD.flash(.success, delay: 0.5) { _ in
                     self?.performSegue(withIdentifier: Constants.Segues.books, sender: nil)
                 }
             }
@@ -109,6 +114,3 @@ class LoginViewController: UIViewController {
         self.view.frame.origin.y = 0
     }
 }
-
-
-

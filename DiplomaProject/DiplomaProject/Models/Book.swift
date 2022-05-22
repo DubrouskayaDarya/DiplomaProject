@@ -10,7 +10,15 @@ import Foundation
 import UIKit
 
 struct Book {
-    internal init(title: String, userId: String, author: String, description: String?, city: String, price: String?, phone: String, imageUrl: String, ref: DatabaseReference?) {
+    init(title: String,
+         userId: String,
+         author: String,
+         description: String?,
+         city: String,
+         price: String?,
+         phone: String,
+         imageUrl: String,
+         ref: DatabaseReference?) {
         self.title = title
         self.userId = userId
         self.author = author
@@ -21,7 +29,7 @@ struct Book {
         self.imageUrl = imageUrl
         self.ref = ref
     }
-    
+
     var title: String
     let userId: String
     let author: String
@@ -50,12 +58,18 @@ struct Book {
         self.price = price
         self.phone = phone
         self.imageUrl = imageUrl
-        
         ref = snapshot.ref
     }
 
     func convertToDictionary() -> [String: Any] {
-        [Constants.titleKey: title, Constants.userIdKey: userId, Constants.authorKey: author, Constants.descriptionKey: description ?? "", Constants.cityKey: city, Constants.priceKey: price ?? "", Constants.phoneKey: phone, Constants.imageUrlKey: imageUrl]
+        [Constants.titleKey: title,
+         Constants.userIdKey: userId,
+         Constants.authorKey: author,
+         Constants.descriptionKey: description ?? "",
+         Constants.cityKey: city,
+         Constants.priceKey: price ?? "",
+         Constants.phoneKey: phone,
+         Constants.imageUrlKey: imageUrl]
     }
 
     enum Constants {
@@ -69,4 +83,3 @@ struct Book {
         static let imageUrlKey = "imageUrl"
     }
 }
-

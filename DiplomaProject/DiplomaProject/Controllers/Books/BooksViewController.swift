@@ -24,14 +24,14 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard let currentUser = Auth.auth().currentUser else { return }
         user = User(user: currentUser)
         ref = Database.database().reference(withPath: "users")
-        tableView.register(UINib(nibName: "BookTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCellIdentifier")
+        tableView.register(UINib(nibName: "BookTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: Constants.CellIdentifiers.bookCell)
     }
 
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? DetailBookViewController,
+        if let detailBookViewController = segue.destination as? DetailBookViewController,
             let index = sender as? Book {
-            vc.book = index
+            detailBookViewController.book = index
         }
     }
 
@@ -70,7 +70,11 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCellIdentifier", for: indexPath) as! BookTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.bookCell,
+                                                       for: indexPath) as? BookTableViewCell else {
+            return UITableViewCell()
+        }
+
         cell.backgroundColor = .clear
         cell.textLabel?.textColor = .white
 
@@ -85,7 +89,7 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let book = books[indexPath.row]
-        performSegue(withIdentifier: "BookToDetailBooksSegue", sender: book)
+        performSegue(withIdentifier: Constants.Segues.bookToDetailBook, sender: book)
     }
 
     @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
@@ -96,8 +100,4 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         dismiss(animated: true, completion: nil)
     }
-
-
-
 }
-

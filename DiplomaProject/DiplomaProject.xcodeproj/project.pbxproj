@@ -35,6 +35,7 @@
 		92E4803C282FF36A001481B9 /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 92E4803B282FF36A001481B9 /* PKHUD */; };
 		92E480422830021C001481B9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E480412830021C001481B9 /* OnboardingViewController.swift */; };
 		92E4804428301DB4001481B9 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4804328301DB4001481B9 /* OnboardingView.swift */; };
+		92E4804B283AC876001481B9 /* UIImageView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4804A283AC876001481B9 /* UIImageView+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		9207FCD328286963008C7CA4 /* BookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
 		92E480412830021C001481B9 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		92E4804328301DB4001481B9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		92E4804A283AC876001481B9 /* UIImageView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		9207FC6A280DDFE6008C7CA4 /* DiplomaProject */ = {
 			isa = PBXGroup;
 			children = (
+				92E48049283AC862001481B9 /* Extensions */,
 				9207FC962810ACAF008C7CA4 /* Constants */,
 				9207FC8E2810A23A008C7CA4 /* Models */,
 				9207FC922810A8DB008C7CA4 /* Controllers */,
@@ -221,6 +224,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		92E48049283AC862001481B9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				92E4804A283AC876001481B9 /* UIImageView+Helpers.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -232,6 +243,7 @@
 				9207FC65280DDFE6008C7CA4 /* Frameworks */,
 				9207FC66280DDFE6008C7CA4 /* Resources */,
 				9207FC932810AA35008C7CA4 /* ShellScript */,
+				92E4804C283AD079001481B9 /* Swift lint */,
 			);
 			buildRules = (
 			);
@@ -326,6 +338,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
+		92E4804C283AD079001481B9 /* Swift lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -347,6 +377,7 @@
 				9207FCC5281D90FD008C7CA4 /* MyBooksViewController.swift in Sources */,
 				92E4804428301DB4001481B9 /* OnboardingView.swift in Sources */,
 				9207FCC3281D90D0008C7CA4 /* BookTableViewCell.swift in Sources */,
+				92E4804B283AC876001481B9 /* UIImageView+Helpers.swift in Sources */,
 				9207FC982810ACEA008C7CA4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
