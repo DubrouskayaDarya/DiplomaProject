@@ -11,7 +11,7 @@ import UIKit
 class FavouritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     var user: User!
     var ref: DatabaseReference!
     var books: [Book] = []
@@ -19,22 +19,22 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.dataSource = self
         tableView.delegate = self
-        
+
         guard let currentUser = Auth.auth().currentUser else { return }
         user = User(user: currentUser)
         ref = Database.database().reference(withPath: "users")
         tableView.register(UINib(nibName: "BookTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCellIdentifier")
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if let vc = segue.destination as? DetailBookViewController,
-          let index = sender as? Book {
-           vc.book = index
-       }
-   }
+        if let vc = segue.destination as? DetailBookViewController,
+            let index = sender as? Book {
+            vc.book = index
+        }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,7 +43,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
             var books = [Book]()
             for user in snapshot.children {
                 guard let userSnapshot = user as? DataSnapshot else { continue }
-                
+
                 // favourite
                 let favouriteSnapshot = userSnapshot.childSnapshot(forPath: "favouriteBooks")
                 if let favouriteBooks = favouriteSnapshot.value as? [String] {
@@ -51,17 +51,17 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
                 } else {
                     self.favouriteBooks = Set<String>()
                 }
-                
+
                 // books
                 let booksSnapshot = userSnapshot.childSnapshot(forPath: "books")
                 for bookSnapshot in booksSnapshot.children {
                     guard let bookSnapshot = bookSnapshot as? DataSnapshot,
-                          let book = Book(snapshot: bookSnapshot) else { continue }
+                        let book = Book(snapshot: bookSnapshot) else { continue }
                     books.append(book)
                 }
             }
 
-            self.books = books.filter{ self.favouriteBooks.contains($0.ref?.key ?? "") }
+            self.books = books.filter { self.favouriteBooks.contains($0.ref?.key ?? "") }
             self.tableView.reloadData()
         }
     }
@@ -73,30 +73,28 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: UITableViewDelegate, UITableViewDataSource
 
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            books.count
-        }
-    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        books.count
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCellIdentifier", for: indexPath) as! BookTableViewCell
-        //            cell.backgroundColor = .clear
-        //            cell.textLabel?.textColor = .white
-        
+
         let book = books[indexPath.row]
         cell.configure(with: book)
-        
+
         return cell
     }
 
-        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            true
-        }
-   
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let book = books[indexPath.row]
         performSegue(withIdentifier: "FavouriteToDetailBooksSegue", sender: book)
     }
-    
+
     @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()

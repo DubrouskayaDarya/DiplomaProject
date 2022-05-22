@@ -9,13 +9,24 @@ import Firebase
 import UIKit
 import FirebaseCore
 import FirebaseStorage
+import Kingfisher
+import PKHUD
 
-class NewBookViewController: UIViewController {
+class MyBookViewController: UIViewController {
 
     var user: User!
     var ref: DatabaseReference!
     var newBooks = [Book]()
     var imagePicker: ImagePicker!
+    var book: Book!
+    let notifications = Notifications()
+
+    let notificationsType = ["Local Notification",
+        "Local Notification with Action",
+        "Local Notification with Content",
+        "Push Notification with  APNs",
+        "Push Notification with Firebase",
+        "Push Notification with Content"]
 
     @IBOutlet weak var imageBookView: UIImageView!
     @IBOutlet weak var addImageButton: UIButton!
@@ -27,16 +38,15 @@ class NewBookViewController: UIViewController {
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         guard let currentUser = Auth.auth().currentUser else { return }
         user = User(user: currentUser)
-        ref = Database.database().reference()
-        
+        ref = Database.database().reference().child("users").child(user.uid).child("books")
+
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-//        imageBookView.addText("No Image Selected")
         saveButton.isEnabled = false
         titleTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         authorTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
@@ -44,91 +54,81 @@ class NewBookViewController: UIViewController {
         cityTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         priceTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         phoneTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-       }
-    
-    @IBAction func addImageTouchUpInside(_ sender: UIButton) {
-        self.imagePicker.present(from: sender)
-        }
-  
+        let imageGestureRecognizer = UITapGestureRecognizer(target: nil, action: #selector(self.addImageTouchUpInside(_:)))
+        imageBookView.addGestureRecognizer(imageGestureRecognizer)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let _ = book else { return }
+        setupUIWithData()
+    }
+
+    @IBAction @objc func addImageTouchUpInside(_ sender: UIButton) {
+        imagePicker.present(from: sender)
+    }
+
     @IBAction func saveBookTouchUpInside(_ sender: Any) {
-        
+
         guard let image = imageBookView.image else {
             assertionFailure("Image was not selected")
+            // показать собщение
             return
         }
-        upload(image: image, currentBookId: user.uid) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let url):
-                let book = Book(title: self.titleTextField.text ?? "",
-                                userId: self.user.uid,
-                                author: self.authorTextField.text ?? "",
-                                description: self.descriptionTextField.text ?? "",
-                                city: self.cityTextField.text ?? "",
-                                price: self.priceTextField.text ?? "",
-                                phone: self.phoneTextField.text ?? "",
-                                imageUrl: url.absoluteString,
-                                ref: self.ref)
-                
-                self.ref.child("users").child(self.user.uid).child("books").childByAutoId().setValue(book.convertToDictionary())
-            case .failure(let error):
-                assertionFailure("Can't upload image to firebase: \(error)")
-            }
+
+        let keyValue = book == nil ? (ref.childByAutoId().key)! : (book?.ref?.key)! // убрать форс анврап
+
+        HUD.show(.progress)
+        uploadImage(image, for: keyValue) { [weak self] url in
+            guard let self = self, let url = url else { return }
+            let book = Book(title: self.titleTextField.text ?? "",
+                userId: self.user.uid,
+                author: self.authorTextField.text ?? "",
+                description: self.descriptionTextField.text ?? "",
+                city: self.cityTextField.text ?? "",
+                price: self.priceTextField.text ?? "",
+                phone: self.phoneTextField.text ?? "",
+                imageUrl: url.absoluteString,
+                ref: self.ref.child(keyValue))
+
+
+            self.ref.child(keyValue).setValue(book.convertToDictionary())
+            HUD.flash(.success, delay: 0.5)
+            self.navigationController?.popToRootViewController(animated: true)
+            self.notifications.scheduleNotification(notificationType: "You have added a new book")
         }
     }
-    
-    private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
-        controller.dismiss(animated: true, completion: nil)
-        imageBookView.removeAll()
-    }
-    
-    func upload (image: UIImage, currentBookId: String, completion: @escaping (Result<URL, Error>) -> Void) {
-        let ref = Storage.storage().reference().child("images").child(currentBookId)
-        guard let imageData = imageBookView.image?.jpegData(compressionQuality: 0.4) else { return }
+
+    private func uploadImage(_ image: UIImage, for bookId: String, completionHandler: @escaping (URL?) -> Void) -> Void {
+        let ref = Storage.storage().reference().child("images").child(bookId)
+        guard let imageData = image.pngData() else { return }
         let metadata = StorageMetadata()
-        metadata.contentType = "images/jpeg"
-        
+        metadata.contentType = "images/png"
+
         ref.putData(imageData, metadata: metadata) { (metadata, error) in
             guard let _ = metadata else {
-                completion(.failure(error!))
+                assertionFailure("Can't upload image to firebase: \(String(describing: error))")
+                completionHandler(nil)
                 return
             }
             ref.downloadURL { url, error in
                 guard let url = url else {
-                    completion(.failure(error!))
+                    assertionFailure("Can't upload image to firebase: \(String(describing: error))")
+                    completionHandler(nil)
                     return
                 }
-                completion(.success(url))
+                completionHandler(url)
             }
         }
     }
-//    var isTitleNotEmpty = false {
-//        didSet { changeButtonStateIfNeeded() }
-//    }
-//    var isAuthorNotEmpty = false {
-//        didSet { changeButtonStateIfNeeded() }
-//    }
-//    var isDescriptionNotEmpty = false {
-//        didSet { changeButtonStateIfNeeded() }
-//    }
-//    var isCityNotEmpty = false {
-//        didSet { changeButtonStateIfNeeded() }
-//    }
-//    var isPriceNotEmpty = false {
-//        didSet { changeButtonStateIfNeeded() }
-//    }
-//    var isPhoneNotEmpty = false {
-//        didSet { changeButtonStateIfNeeded() }
-//    }
-//
-//
-//    func changeButtonStateIfNeeded () {
-//        if isTitleNotEmpty, isAuthorNotEmpty, isDescriptionNotEmpty, isCityNotEmpty, isPriceNotEmpty, isPhoneNotEmpty {
-//            saveButton.isEnabled = true
-//        } else {
-//            saveButton.isEnabled = false
-//        }
-//    }
+
+
+
+    private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
+        controller.dismiss(animated: true, completion: nil)
+        imageBookView.removeAll()
+    }
+
     @objc func editingChanged(_ textField: UITextField) {
         if textField.text?.count == 1 {
             if textField.text?.first == " " {
@@ -143,15 +143,27 @@ class NewBookViewController: UIViewController {
             let city = cityTextField.text, !city.isEmpty,
             let price = priceTextField.text, !price.isEmpty,
             let phone = phoneTextField.text, !phone.isEmpty
-        else {
+            else {
             saveButton.isEnabled = false
             return
         }
         saveButton.isEnabled = true
     }
+
+    private func setupUIWithData() {
+        titleTextField?.text = book.title
+        authorTextField?.text = book.author
+        descriptionTextField?.text = book.description
+        cityTextField?.text = book.city
+        priceTextField?.text = book.price
+        phoneTextField?.text = book.phone
+        let url = URL(string: book.imageUrl)
+        imageBookView.kf.setImage(with: url)
+        saveButton.isEnabled = true
+    }
 }
 
-extension NewBookViewController: ImagePickerDelegate {
+extension MyBookViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
         self.imageBookView.image = image
     }

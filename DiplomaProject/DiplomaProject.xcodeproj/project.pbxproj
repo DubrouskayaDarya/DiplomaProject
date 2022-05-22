@@ -12,7 +12,6 @@
 		9207FC73280DDFE6008C7CA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9207FC71280DDFE6008C7CA4 /* Main.storyboard */; };
 		9207FC75280DDFE7008C7CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9207FC74280DDFE7008C7CA4 /* Assets.xcassets */; };
 		9207FC78280DDFE7008C7CA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9207FC76280DDFE7008C7CA4 /* LaunchScreen.storyboard */; };
-		9207FC82280DFC11008C7CA4 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9207FC81280DFC11008C7CA4 /* LogIn.storyboard */; };
 		9207FC8728109A2A008C7CA4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9207FC8628109A2A008C7CA4 /* FirebaseAnalytics */; };
 		9207FC8928109A2A008C7CA4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9207FC8828109A2A008C7CA4 /* FirebaseAuth */; };
 		9207FC8B28109A2A008C7CA4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9207FC8A28109A2A008C7CA4 /* FirebaseCrashlytics */; };
@@ -27,13 +26,16 @@
 		9207FCC3281D90D0008C7CA4 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207FCC2281D90D0008C7CA4 /* BookTableViewCell.swift */; };
 		9207FCC5281D90FD008C7CA4 /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207FCC4281D90FD008C7CA4 /* MyBooksViewController.swift */; };
 		9207FCC8281EA456008C7CA4 /* DetailBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207FCC7281EA456008C7CA4 /* DetailBookViewController.swift */; };
-		9207FCCA2824492A008C7CA4 /* NewBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207FCC92824492A008C7CA4 /* NewBookViewController.swift */; };
+		9207FCCA2824492A008C7CA4 /* MyBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207FCC92824492A008C7CA4 /* MyBookViewController.swift */; };
 		9207FCCC2826BD78008C7CA4 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207FCCB2826BD78008C7CA4 /* FavouritesViewController.swift */; };
 		9207FCCF28284667008C7CA4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207FCCE28284667008C7CA4 /* ImagePicker.swift */; };
 		9207FCD528286963008C7CA4 /* BookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9207FCD328286963008C7CA4 /* BookTableViewCell.xib */; };
 		9207FCDA28297FBF008C7CA4 /* PaperOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 9207FCD928297FBF008C7CA4 /* PaperOnboarding */; };
-		9207FCDC2829801A008C7CA4 /* PaperOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207FCDB2829801A008C7CA4 /* PaperOnboarding.swift */; };
 		9207FCDF2829835A008C7CA4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9207FCDE2829835A008C7CA4 /* FirebaseStorage */; };
+		92E4803C282FF36A001481B9 /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 92E4803B282FF36A001481B9 /* PKHUD */; };
+		92E480422830021C001481B9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E480412830021C001481B9 /* OnboardingViewController.swift */; };
+		92E4804428301DB4001481B9 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4804328301DB4001481B9 /* OnboardingView.swift */; };
+		92E4804828318124001481B9 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4804728318124001481B9 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +46,6 @@
 		9207FC74280DDFE7008C7CA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9207FC77280DDFE7008C7CA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9207FC79280DDFE7008C7CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9207FC81280DFC11008C7CA4 /* LogIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogIn.storyboard; sourceTree = "<group>"; };
 		9207FC8F2810A24F008C7CA4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9207FC942810AC5C008C7CA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9207FC972810ACEA008C7CA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -54,11 +55,13 @@
 		9207FCC2281D90D0008C7CA4 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		9207FCC4281D90FD008C7CA4 /* MyBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
 		9207FCC7281EA456008C7CA4 /* DetailBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookViewController.swift; sourceTree = "<group>"; };
-		9207FCC92824492A008C7CA4 /* NewBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookViewController.swift; sourceTree = "<group>"; };
+		9207FCC92824492A008C7CA4 /* MyBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookViewController.swift; sourceTree = "<group>"; };
 		9207FCCB2826BD78008C7CA4 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		9207FCCE28284667008C7CA4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		9207FCD328286963008C7CA4 /* BookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
-		9207FCDB2829801A008C7CA4 /* PaperOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperOnboarding.swift; sourceTree = "<group>"; };
+		92E480412830021C001481B9 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		92E4804328301DB4001481B9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		92E4804728318124001481B9 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9207FC8B28109A2A008C7CA4 /* FirebaseCrashlytics in Frameworks */,
+				92E4803C282FF36A001481B9 /* PKHUD in Frameworks */,
 				9207FC8728109A2A008C7CA4 /* FirebaseAnalytics in Frameworks */,
 				9207FCDA28297FBF008C7CA4 /* PaperOnboarding in Frameworks */,
 				9207FC8D28109A2A008C7CA4 /* FirebaseDatabase in Frameworks */,
@@ -116,7 +120,6 @@
 			children = (
 				9207FC71280DDFE6008C7CA4 /* Main.storyboard */,
 				9207FC76280DDFE7008C7CA4 /* LaunchScreen.storyboard */,
-				9207FC81280DFC11008C7CA4 /* LogIn.storyboard */,
 				9207FCD328286963008C7CA4 /* BookTableViewCell.xib */,
 			);
 			path = Views;
@@ -149,7 +152,8 @@
 				9207FCD628294B17008C7CA4 /* DetailBooks */,
 				9207FCC6281D912D008C7CA4 /* MyBooks */,
 				9207FCCD2827E86E008C7CA4 /* Favourites */,
-				9207FCDB2829801A008C7CA4 /* PaperOnboarding.swift */,
+				92E48045283180ED001481B9 /* Onboarding */,
+				92E48046283180FA001481B9 /* Notifications */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -174,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				9207FCC4281D90FD008C7CA4 /* MyBooksViewController.swift */,
-				9207FCC92824492A008C7CA4 /* NewBookViewController.swift */,
+				9207FCC92824492A008C7CA4 /* MyBookViewController.swift */,
 				9207FCCE28284667008C7CA4 /* ImagePicker.swift */,
 			);
 			path = MyBooks;
@@ -211,6 +215,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		92E48045283180ED001481B9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				92E480412830021C001481B9 /* OnboardingViewController.swift */,
+				92E4804328301DB4001481B9 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		92E48046283180FA001481B9 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				92E4804728318124001481B9 /* Notifications.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -236,6 +257,7 @@
 				9207FCAE2819B40D008C7CA4 /* Kingfisher */,
 				9207FCD928297FBF008C7CA4 /* PaperOnboarding */,
 				9207FCDE2829835A008C7CA4 /* FirebaseStorage */,
+				92E4803B282FF36A001481B9 /* PKHUD */,
 			);
 			productName = DiplomaProject;
 			productReference = 9207FC68280DDFE6008C7CA4 /* DiplomaProject.app */;
@@ -269,6 +291,7 @@
 				9207FC8528109A2A008C7CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				9207FCAD2819B40C008C7CA4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				9207FCD828297FBF008C7CA4 /* XCRemoteSwiftPackageReference "paper-onboarding" */,
+				92E4803A282FF36A001481B9 /* XCRemoteSwiftPackageReference "PKHUD" */,
 			);
 			productRefGroup = 9207FC69280DDFE6008C7CA4 /* Products */;
 			projectDirPath = "";
@@ -284,7 +307,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9207FC82280DFC11008C7CA4 /* LogIn.storyboard in Resources */,
 				9207FC78280DDFE7008C7CA4 /* LaunchScreen.storyboard in Resources */,
 				9207FCD528286963008C7CA4 /* BookTableViewCell.xib in Resources */,
 				9207FC9A2811F7A5008C7CA4 /* GoogleService-Info.plist in Resources */,
@@ -328,14 +350,16 @@
 				9207FCCF28284667008C7CA4 /* ImagePicker.swift in Sources */,
 				9207FC952810AC5C008C7CA4 /* LoginViewController.swift in Sources */,
 				9207FCCC2826BD78008C7CA4 /* FavouritesViewController.swift in Sources */,
+				92E480422830021C001481B9 /* OnboardingViewController.swift in Sources */,
 				9207FC6E280DDFE6008C7CA4 /* SceneDelegate.swift in Sources */,
+				92E4804828318124001481B9 /* Notifications.swift in Sources */,
 				9207FCB6281C5F5B008C7CA4 /* Book.swift in Sources */,
 				9207FCC8281EA456008C7CA4 /* DetailBookViewController.swift in Sources */,
-				9207FCCA2824492A008C7CA4 /* NewBookViewController.swift in Sources */,
+				9207FCCA2824492A008C7CA4 /* MyBookViewController.swift in Sources */,
 				9207FCC5281D90FD008C7CA4 /* MyBooksViewController.swift in Sources */,
+				92E4804428301DB4001481B9 /* OnboardingView.swift in Sources */,
 				9207FCC3281D90D0008C7CA4 /* BookTableViewCell.swift in Sources */,
 				9207FC982810ACEA008C7CA4 /* Constants.swift in Sources */,
-				9207FCDC2829801A008C7CA4 /* PaperOnboarding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +518,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -524,7 +548,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -586,6 +610,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		92E4803A282FF36A001481B9 /* XCRemoteSwiftPackageReference "PKHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pkluz/PKHUD.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -623,6 +655,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9207FC8528109A2A008C7CA4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		92E4803B282FF36A001481B9 /* PKHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92E4803A282FF36A001481B9 /* XCRemoteSwiftPackageReference "PKHUD" */;
+			productName = PKHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

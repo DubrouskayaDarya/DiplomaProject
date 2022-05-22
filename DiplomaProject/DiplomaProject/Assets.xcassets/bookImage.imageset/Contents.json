@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "52782.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "IMAGE.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -17,5 +17,8 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
   }
 }

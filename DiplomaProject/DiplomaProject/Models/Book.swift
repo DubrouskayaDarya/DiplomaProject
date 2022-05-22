@@ -29,7 +29,7 @@ struct Book {
     let city: String
     let price: String?
     let phone: String
-    let imageUrl: String
+    var imageUrl: String
     let ref: DatabaseReference?
 
     init?(snapshot: DataSnapshot) {

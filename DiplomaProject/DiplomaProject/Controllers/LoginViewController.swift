@@ -7,6 +7,7 @@
 
 import Firebase
 import UIKit
+import PKHUD
 
 class LoginViewController: UIViewController {
 
@@ -15,17 +16,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var warnLabel: UILabel!
-  
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         ref = Database.database().reference(withPath: "users")
-
-        // если у нас еще есть действующий user то сделаем переход
-        Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            guard let _ = user else { return }
-            self?.performSegue(withIdentifier: Constants.Segues.books, sender: nil)
-        }
 
         NotificationCenter.default.addObserver(self, selector: #selector(kbDidShow), name: UIWindow.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(kbDidHide), name: UIWindow.keyboardWillHideNotification, object: nil)
@@ -33,7 +28,6 @@ class LoginViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // чистим поля
         emailTextField.text = ""
         passwordTextField.text = ""
     }
@@ -45,28 +39,31 @@ class LoginViewController: UIViewController {
         // проверяем все поля
         guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
             // показываем уникальный error
-            displayWarningLabel(withText: "info is incorrect")
+            displayWarningLabel(withText: "Data entered incorrectly \nEnter your email and password and click Sign in")
             return
         }
 
         // логинемся
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
             if let _ = error {
-                self?.displayWarningLabel(withText: "Error ocured")
+                self?.displayWarningLabel(withText: "Error ocured \nEmail or password entered incorrectly")
             } else if let _ = user {
                 // переходим на новый экран
-                self?.performSegue(withIdentifier: Constants.Segues.books, sender: nil)
+                HUD.show(.progress)
+                HUD.hide(afterDelay: 1) { success in
+                    self?.performSegue(withIdentifier: Constants.Segues.books, sender: nil)
+                }
                 return
             } else {
-                self?.displayWarningLabel(withText: "No such user")
+                self?.displayWarningLabel(withText: "No such user \nCheck the entered data")
             }
         }
     }
-    
+
     @IBAction func registerTapped(_ sender: UIButton) {
         // проверяем все поля
         guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
-            displayWarningLabel(withText: "Info is incorrect")
+            displayWarningLabel(withText: "Data entered incorrectly \nEnter your email and password and click Sign up")
             return
         }
 
@@ -75,13 +72,15 @@ class LoginViewController: UIViewController {
             if let error = error {
                 self?.displayWarningLabel(withText: "Registration was incorrect\n\(error.localizedDescription)")
             } else {
+                HUD.show(.progress)
                 guard let user = user else { return }
                 let userRef = self?.ref.child(user.user.uid)
                 userRef?.setValue(["email": user.user.email])
+                HUD.flash(.success, delay: 0.5)
             }
         }
     }
-    
+
     // MARK: Private
 
     private func displayWarningLabel(withText text: String) {

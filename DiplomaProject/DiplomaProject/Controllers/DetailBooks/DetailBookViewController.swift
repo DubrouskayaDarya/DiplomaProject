@@ -8,13 +8,15 @@
 import Firebase
 import UIKit
 import Kingfisher
+import MessageUI
 
-class DetailBookViewController: UIViewController {
+class DetailBookViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     var user: User!
     var book: Book!
     var ref: DatabaseReference!
     var favouriteBooks = Set<String>()
+
 
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -45,10 +47,10 @@ class DetailBookViewController: UIViewController {
             self.isFavouriteSwitch.isOn = self.favouriteBooks.contains(self.book.ref?.key ?? "")
         }
     }
-    
+
     // отпишись в дисапере
 
-    @IBAction func contactTouchUpInside(_ sender: Any) {
+    @IBAction func contactCallTouchUpInside(_ sender: Any) {
 
         let alertController = UIAlertController(title: "Phone", message: "You can call the owner of the book", preferredStyle: .alert)
 
@@ -59,12 +61,44 @@ class DetailBookViewController: UIViewController {
                 UIApplication.shared.openURL(url)
             }
         }
-        
+
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(call)
         alertController.addAction(cancel)
         present(alertController, animated: true)
     }
+
+    @IBAction func contactEmailTouchUpInside(_ sender: Any) {
+//        sendEmail()
+        let alertController = UIAlertController(title: "Email", message: "You can write the owner of the book", preferredStyle: .alert)
+
+        let email = UIAlertAction(title: "Email", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.sendEmail()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(email)
+        alertController.addAction(cancel)
+        present(alertController, animated: true)
+    }
+
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["\(self.user.email)"])
+            mail.setMessageBody("<p></p>", isHTML: true)
+
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+
 
     @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
         do {
@@ -89,7 +123,7 @@ class DetailBookViewController: UIViewController {
     }
 
     @IBAction func shareButtonTouchUpInside(_ sender: Any) {
-        let vc = UIActivityViewController(activityItems: ["Check my app at www.myapp.example.com"], applicationActivities: nil)
+        let vc = UIActivityViewController(activityItems: ["Interesting book - \(book.title) \nAuthor - \(book.author) \n Description - \(book.description ?? "") \nLocation - \(book.city) \nPrice - \(book.price ?? "")"], applicationActivities: nil)
         vc.popoverPresentationController?.sourceView = self.view
 
         self.present(vc, animated: true, completion: nil)

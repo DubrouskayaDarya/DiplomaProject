@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="DiplomaProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="DiplomaProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -119,12 +119,64 @@
                         <outlet property="emailTextField" destination="djl-fn-oXP" id="rI9-v2-bmX"/>
                         <outlet property="passwordTextField" destination="AZ6-lt-H9N" id="mBP-Ef-LTX"/>
                         <outlet property="warnLabel" destination="JT1-H3-t1r" id="2hn-aS-aLC"/>
-                        <segue destination="Sep-0E-fsT" kind="showDetail" identifier="booksSegue" id="gXZ-Kl-NK7"/>
+                        <segue destination="Sep-0E-fsT" kind="showDetail" identifier="booksSegue" animates="NO" id="gXZ-Kl-NK7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="127.53623188405798" y="1875.6696428571427"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="soP-F0-Qk8">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingViewController" id="uSB-bb-IVP" customClass="OnboardingViewController" customModule="DiplomaProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cia-lr-nQs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rsR-nM-g6X" customClass="OnboardingView" customModule="DiplomaProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="65" width="414" height="831"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="tintColor" systemColor="systemYellowColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yky-Qy-pa3">
+                                <rect key="frame" x="325" y="44" width="74" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemYellowColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Skip">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="22"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="skipAction:" destination="uSB-bb-IVP" eventType="touchUpInside" id="dls-1A-iwz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zyR-T1-D6b"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Yky-Qy-pa3" firstAttribute="top" secondItem="zyR-T1-D6b" secondAttribute="top" id="1ce-xi-C3I"/>
+                            <constraint firstItem="zyR-T1-D6b" firstAttribute="trailing" secondItem="rsR-nM-g6X" secondAttribute="trailing" id="XmS-6c-7h7"/>
+                            <constraint firstItem="Yky-Qy-pa3" firstAttribute="leading" secondItem="zyR-T1-D6b" secondAttribute="leading" constant="325" id="ZyA-Xn-iD1"/>
+                            <constraint firstItem="zyR-T1-D6b" firstAttribute="trailing" secondItem="Yky-Qy-pa3" secondAttribute="trailing" constant="15" id="bcs-r7-kuR"/>
+                            <constraint firstItem="zyR-T1-D6b" firstAttribute="bottom" secondItem="rsR-nM-g6X" secondAttribute="bottom" constant="-34" id="gib-rM-Wjj"/>
+                            <constraint firstItem="rsR-nM-g6X" firstAttribute="leading" secondItem="zyR-T1-D6b" secondAttribute="leading" id="k5L-gM-R6T"/>
+                            <constraint firstItem="rsR-nM-g6X" firstAttribute="top" secondItem="zyR-T1-D6b" secondAttribute="top" constant="-56" id="o2f-6O-rAm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="onboardingView" destination="rsR-nM-g6X" id="G7f-9G-Fal"/>
+                        <outlet property="skipButton" destination="Yky-Qy-pa3" id="T4l-RN-Ehd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZNK-tG-aip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-704" y="1876"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aAX-dl-2ut">
@@ -238,23 +290,6 @@
                                     </switch>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYA-YN-mEQ">
-                                <rect key="frame" x="30" y="744" width="354" height="44"/>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Call">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
-                                    <color key="baseForegroundColor" red="0.50585258007049561" green="0.1608264148235321" blue="0.18297922611236572" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="contactTouchUpInside:" destination="u3m-su-ZIZ" eventType="touchUpInside" id="2Uq-EF-V7y"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ndu-fO-all">
                                 <rect key="frame" x="15" y="412" width="384" height="23"/>
                                 <subviews>
@@ -316,7 +351,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69Y-rX-8Hf">
-                                <rect key="frame" x="25" y="688" width="364" height="31"/>
+                                <rect key="frame" x="25" y="657" width="364" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Share">
                                     <imageReference key="image" image="arrowshape.turn.up.forward.fill" catalog="system" symbolScale="large" renderingMode="template"/>
@@ -326,16 +361,53 @@
                                     <action selector="shareButtonTouchUpInside:" destination="u3m-su-ZIZ" eventType="touchUpInside" id="1Dq-tR-mM4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsg-hA-Syj">
+                                <rect key="frame" x="30" y="762" width="354" height="44"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Send Email">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                    <color key="baseForegroundColor" red="0.5058525801" green="0.16082641480000001" blue="0.1829792261" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="contactEmailTouchUpInside:" destination="u3m-su-ZIZ" eventType="touchUpInside" id="Q9c-hO-FIP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYA-YN-mEQ">
+                                <rect key="frame" x="30" y="703" width="354" height="44"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Call">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                    <color key="baseForegroundColor" red="0.50585258007049561" green="0.1608264148235321" blue="0.18297922611236572" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="contactCallTouchUpInside:" destination="u3m-su-ZIZ" eventType="touchUpInside" id="AtV-1N-3Mg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="seZ-Mb-qnL"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="ndu-fO-all" firstAttribute="leading" secondItem="seZ-Mb-qnL" secondAttribute="leading" constant="15" id="4Aa-1H-Zgr"/>
-                            <constraint firstItem="seZ-Mb-qnL" firstAttribute="bottom" secondItem="aYA-YN-mEQ" secondAttribute="bottom" constant="25" id="9o4-kY-nQ1"/>
                             <constraint firstItem="aVn-0h-IJo" firstAttribute="leading" secondItem="seZ-Mb-qnL" secondAttribute="leading" constant="75" id="9uC-PC-WIc"/>
                             <constraint firstItem="seZ-Mb-qnL" firstAttribute="trailing" secondItem="69Y-rX-8Hf" secondAttribute="trailing" constant="25" id="AG9-tP-zNJ"/>
+                            <constraint firstItem="dsg-hA-Syj" firstAttribute="top" secondItem="aYA-YN-mEQ" secondAttribute="bottom" constant="15" id="B2G-58-zaJ"/>
+                            <constraint firstItem="dsg-hA-Syj" firstAttribute="leading" secondItem="seZ-Mb-qnL" secondAttribute="leading" constant="30" id="H7k-mf-kqo"/>
                             <constraint firstItem="ZKg-Ji-m0E" firstAttribute="leading" secondItem="seZ-Mb-qnL" secondAttribute="leading" constant="15" id="JIv-qV-CLa"/>
+                            <constraint firstAttribute="bottom" secondItem="dsg-hA-Syj" secondAttribute="bottom" constant="90" id="Nvc-2u-onE"/>
                             <constraint firstItem="aVn-0h-IJo" firstAttribute="top" secondItem="seZ-Mb-qnL" secondAttribute="top" constant="2" id="Owu-Ra-Thb"/>
+                            <constraint firstItem="seZ-Mb-qnL" firstAttribute="trailing" secondItem="dsg-hA-Syj" secondAttribute="trailing" constant="30" id="P95-XC-nPb"/>
                             <constraint firstItem="POo-Mt-eK7" firstAttribute="top" secondItem="66i-3L-YHt" secondAttribute="bottom" constant="35" id="V2c-Pq-C1D"/>
                             <constraint firstItem="seZ-Mb-qnL" firstAttribute="trailing" secondItem="POo-Mt-eK7" secondAttribute="trailing" constant="105" id="Xc3-3p-nA5"/>
                             <constraint firstItem="ZKg-Ji-m0E" firstAttribute="top" secondItem="ndu-fO-all" secondAttribute="bottom" constant="15" id="YNd-PL-GIm"/>
@@ -347,8 +419,8 @@
                             <constraint firstItem="seZ-Mb-qnL" firstAttribute="trailing" secondItem="ndu-fO-all" secondAttribute="trailing" constant="15" id="i3S-3D-K4H"/>
                             <constraint firstItem="ndu-fO-all" firstAttribute="top" secondItem="IHO-gc-4xe" secondAttribute="bottom" constant="25" id="kFG-6c-ecR"/>
                             <constraint firstItem="IHO-gc-4xe" firstAttribute="leading" secondItem="seZ-Mb-qnL" secondAttribute="leading" constant="30" id="nxb-1m-fqh"/>
-                            <constraint firstItem="aYA-YN-mEQ" firstAttribute="top" secondItem="69Y-rX-8Hf" secondAttribute="bottom" constant="25" id="psQ-iR-RBh"/>
                             <constraint firstItem="66i-3L-YHt" firstAttribute="top" secondItem="ZKg-Ji-m0E" secondAttribute="bottom" constant="15" id="sgC-WZ-XIc"/>
+                            <constraint firstItem="aYA-YN-mEQ" firstAttribute="top" secondItem="69Y-rX-8Hf" secondAttribute="bottom" constant="15" id="sow-UO-GGJ"/>
                             <constraint firstItem="66i-3L-YHt" firstAttribute="leading" secondItem="seZ-Mb-qnL" secondAttribute="leading" constant="15" id="tgX-UT-TnZ"/>
                             <constraint firstItem="seZ-Mb-qnL" firstAttribute="trailing" secondItem="aVn-0h-IJo" secondAttribute="trailing" constant="75" id="uEC-JA-IML"/>
                             <constraint firstItem="seZ-Mb-qnL" firstAttribute="trailing" secondItem="aYA-YN-mEQ" secondAttribute="trailing" constant="30" id="vKX-6n-EEH"/>
@@ -503,7 +575,7 @@
         <!--Add new book-->
         <scene sceneID="drl-xW-UC5">
             <objects>
-                <viewController id="2HY-M3-gfu" customClass="NewBookViewController" customModule="DiplomaProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2HY-M3-gfu" customClass="MyBookViewController" customModule="DiplomaProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I3v-Vm-2pM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -624,9 +696,9 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="z0B-Q9-7R3">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="z0B-Q9-7R3">
                                 <rect key="frame" x="75" y="473" width="264" height="197.5"/>
-                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="KNZ-TD-kxv"/>
                                 </constraints>
@@ -733,8 +805,14 @@
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="books.vertical.fill" catalog="system" width="128" height="109"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
