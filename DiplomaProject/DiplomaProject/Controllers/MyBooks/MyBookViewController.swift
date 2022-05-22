@@ -19,14 +19,6 @@ class MyBookViewController: UIViewController {
     var newBooks = [Book]()
     var imagePicker: ImagePicker!
     var book: Book!
-    let notifications = Notifications()
-
-    let notificationsType = ["Local Notification",
-        "Local Notification with Action",
-        "Local Notification with Content",
-        "Push Notification with  APNs",
-        "Push Notification with Firebase",
-        "Push Notification with Content"]
 
     @IBOutlet weak var imageBookView: UIImageView!
     @IBOutlet weak var addImageButton: UIButton!
@@ -94,8 +86,6 @@ class MyBookViewController: UIViewController {
 
             self.ref.child(keyValue).setValue(book.convertToDictionary())
             HUD.flash(.success, delay: 0.5)
-            self.navigationController?.popToRootViewController(animated: true)
-            self.notifications.scheduleNotification(notificationType: "You have added a new book")
         }
     }
 
@@ -121,8 +111,6 @@ class MyBookViewController: UIViewController {
             }
         }
     }
-
-
 
     private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
         controller.dismiss(animated: true, completion: nil)

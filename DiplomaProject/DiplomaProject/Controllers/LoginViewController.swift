@@ -76,7 +76,9 @@ class LoginViewController: UIViewController {
                 guard let user = user else { return }
                 let userRef = self?.ref.child(user.user.uid)
                 userRef?.setValue(["email": user.user.email])
-                HUD.flash(.success, delay: 0.5)
+                HUD.flash(.success, delay: 0.5){ success in
+                    self?.performSegue(withIdentifier: Constants.Segues.books, sender: nil)
+                }
             }
         }
     }

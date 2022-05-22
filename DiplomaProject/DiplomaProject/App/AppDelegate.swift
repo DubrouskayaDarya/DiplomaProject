@@ -14,13 +14,11 @@ import FirebaseStorage
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    let notifications = Notifications()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         let storage = Storage.storage()
-        notifications.requestAutorization()
-        notifications.notificationCenter.delegate = notifications
+    
         return true
     }
 
