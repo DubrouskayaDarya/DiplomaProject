@@ -15,5 +15,6 @@ Users must register and log in before they can access the main part of the appli
 
 ## Main Views: Books, My books, Favorites
 For these screens, UIViewControllers is used. The list of books is presented in the form of a table using TableView and a custom cell, which is placed in a separate xib file.
+
 <img width="500" alt="Снимок экрана 2022-05-22 в 13 41 20" src="https://user-images.githubusercontent.com/97699156/169893388-cd61a740-1107-4e44-9dcb-db3456268851.png">
-<img width="565" alt="Снимок экрана 2022-05-22 в 13 41 48" src="https://user-images.githubusercontent.com/97699156/169893452-f840eb6e-94ad-422f-883f-dd77bf9a4540.png">
+<img width="500" alt="Снимок экрана 2022-05-22 в 13 41 48" src="https://user-images.githubusercontent.com/97699156/169893452-f840eb6e-94ad-422f-883f-dd77bf9a4540.png">
