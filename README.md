@@ -2,7 +2,7 @@
 # Mobile ios application BooksAD
 ## General information about the application
 The BooksAD app is an app for posting book ads
-![Simulator Screen Shot - iPhone 13 Pro Max - 2022-05-23 at 21 50 44]<img src="[https://user-images.githubusercontent.com/97699156/169886915-93deb2a9-bc72-4c88-999c-c0d3c333c919.png]" width="500">
+<img width="323" alt="Снимок экрана 2022-05-23 в 23 18 10" src="https://user-images.githubusercontent.com/97699156/169899256-c2d8d3dd-d2b1-4e92-bb05-97af9ae30dcc.png">
 ![Simulator Screen Shot - iPhone 13 Pro Max - 2022-05-23 at 21 49 30](https://user-images.githubusercontent.com/97699156/169886750-52ddbeb7-1dbc-4ada-9c4e-54f80b4c7c33.png)
 ![Simulator Screen Shot - iPhone 13 Pro Max - 2022-05-22 at 12 30 29](https://user-images.githubusercontent.com/97699156/169887065-78a52861-fef6-4983-abd0-e89740c84a06.png)
 ## Summary
