@@ -2,9 +2,7 @@
 # Mobile ios application BooksAD
 ## General information about the application
 The BooksAD app is an app for posting book ads
-![Simulator Screen Shot - iPhone 13 Pro Max - 2022-05-23 at 21 50 44](https://user-images.githubusercontent.com/97699156/169886915-93deb2a9-bc72-4c88-999c-c0d3c333c919.png)
-![Simulator Screen Shot - iPhone 13 Pro Max - 2022-05-23 at 21 49 30](https://user-images.githubusercontent.com/97699156/169886750-52ddbeb7-1dbc-4ada-9c4e-54f80b4c7c33.png)
-![Simulator Screen Shot - iPhone 13 Pro Max - 2022-05-22 at 12 30 29](https://user-images.githubusercontent.com/97699156/169887065-78a52861-fef6-4983-abd0-e89740c84a06.png)
+![Simulator Screen Shot - iPhone 13 Pro Max - 2022-05-23 at 21 50 44](https://user-images.githubusercontent.com/97699156/169886915-93deb2a9-bc72-4c88-999c-c0d3c333c919.png) ![Simulator Screen Shot - iPhone 13 Pro Max - 2022-05-23 at 21 49 30](https://user-images.githubusercontent.com/97699156/169886750-52ddbeb7-1dbc-4ada-9c4e-54f80b4c7c33.png)![Simulator Screen Shot - iPhone 13 Pro Max - 2022-05-22 at 12 30 29](https://user-images.githubusercontent.com/97699156/169887065-78a52861-fef6-4983-abd0-e89740c84a06.png)
 ## Summary
 The application includes several view controllers: the login and registration screen, the book screen of all users, the screens of favorite books and books of this user, the detail screen of a book, and the addition and editing of a book. The server part will be powered by Firebase.
 ## Login
