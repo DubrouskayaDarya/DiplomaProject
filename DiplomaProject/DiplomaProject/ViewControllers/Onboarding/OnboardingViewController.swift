@@ -42,6 +42,7 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource {
                 title: "Books",
                 description: """
                             All users' book announcements are displayed here.
+                            
                             When you click on a book, you can view the detailed information of this book,
                             share the book, call the owner of this book, or add the book to your favorites
                             """,
@@ -56,6 +57,7 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource {
                 title: "My books",
                 description: """
                             Only your added books are displayed here.
+                            
                             On this screen, you can also add your book, and when you click on an already added book,
                             you can view the details of the added book and edit your listing
                             """,
@@ -70,6 +72,7 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource {
                 title: "Favorites",
                 description: """
                             All books that you have added to your favorites are displayed here.
+                            
                             When you click on a book, you can view detailed information about that book,
                             share the book, call the owner of that book, or remove the book from your favorites.
                             """,

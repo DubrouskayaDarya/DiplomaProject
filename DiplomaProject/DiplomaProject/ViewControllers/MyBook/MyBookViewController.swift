@@ -12,7 +12,7 @@ import FirebaseStorage
 import Kingfisher
 import PKHUD
 
-class MyBookViewController: UIViewController {
+class MyBookViewController: BaseBookSignOutViewController {
 
     var user: User!
     var ref: DatabaseReference!
@@ -83,6 +83,7 @@ class MyBookViewController: UIViewController {
 
             self.ref.child(keyValue).setValue(book.convertToDictionary())
             HUD.flash(.success, delay: 0.5)
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
 

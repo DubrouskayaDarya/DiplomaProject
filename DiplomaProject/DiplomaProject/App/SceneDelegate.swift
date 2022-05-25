@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
     var ref: DatabaseReference!
 
@@ -29,24 +28,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             try? Auth.auth().signOut()
         }
 
-        let isOnboardingFinished =
-            UserDefaults.standard.bool(forKey: Constants.UserDefaultsKeys.isOnboardingFinishedKey)
-
         ref = Database.database().reference(withPath: "users")
 
-        let user = Auth.auth().currentUser
+        Auth.auth().addStateDidChangeListener { [weak self] _, user in
+            guard let self = self else { return }
+            window.rootViewController = user == nil ?
+             self.startViewController :
+            Constants.ViewControllers.mainTabBarController
 
-        var initialViewController: UIViewController?
-
-        if user == nil {
-            initialViewController = isOnboardingFinished ?
-            Constants.ViewControllers.loginViewController :
-            Constants.ViewControllers.onboardingViewController
-        } else {
-            initialViewController = Constants.ViewControllers.mainTabBarController
+            window.makeKeyAndVisible()
         }
+    }
 
-        window.rootViewController = initialViewController
-        window.makeKeyAndVisible()
+    var startViewController: UIViewController {
+        let isOnboardingFinished =
+        UserDefaults.standard.bool(forKey: Constants.UserDefaultsKeys.isOnboardingFinishedKey)
+        return isOnboardingFinished ?
+        Constants.ViewControllers.loginViewController :
+        Constants.ViewControllers.onboardingViewController
     }
 }

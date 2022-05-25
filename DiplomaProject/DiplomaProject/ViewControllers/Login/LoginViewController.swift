@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
             } else if user != nil {
                 // переходим на новый экран
                 HUD.show(.progress)
-                HUD.hide(afterDelay: 1) { _ in
+                HUD.hide(afterDelay: 2) { _ in
                     self?.performSegue(withIdentifier: Constants.Segues.books, sender: nil)
                 }
                 return

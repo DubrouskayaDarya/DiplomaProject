@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import MessageUI
 
-class DetailBookViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class DetailBookViewController: BaseBookSignOutViewController, MFMailComposeViewControllerDelegate {
 
     var user: User!
     var book: Book!
@@ -70,7 +70,8 @@ class DetailBookViewController: UIViewController, MFMailComposeViewControllerDel
     @IBAction func contactEmailTouchUpInside(_ sender: Any) {
 //        sendEmail()
         let alertController = UIAlertController(title: "Email",
-                                                message: "You can write the owner of the book", preferredStyle: .alert)
+                                                message: "You can send an email to the book owner",
+                                                preferredStyle: .alert)
 
         let email = UIAlertAction(title: "Email", style: .default) { [weak self] _ in
             guard let self = self else { return }
@@ -99,15 +100,6 @@ class DetailBookViewController: UIViewController, MFMailComposeViewControllerDel
                                didFinishWith result: MFMailComposeResult,
                                error: Error?) {
         controller.dismiss(animated: true)
-    }
-
-    @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error.localizedDescription)
-        }
-        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func switchValueChanged(_ sender: UISwitch) {

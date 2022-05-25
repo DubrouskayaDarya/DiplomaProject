@@ -141,7 +141,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yky-Qy-pa3">
                                 <rect key="frame" x="325" y="44" width="74" height="40"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Skip">
@@ -275,7 +275,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="POo-Mt-eK7">
                                 <rect key="frame" x="105" y="546" width="204" height="31"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to favourites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ond-j5-tsA">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ond-j5-tsA">
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.50585258007049561" green="0.1608264148235321" blue="0.18297922611236572" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -432,7 +432,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Sign out" id="EJE-SP-Rdx">
                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="signOutTapped:" destination="u3m-su-ZIZ" id="Irz-dE-GzK"/>
+                                <action selector="signOutTapped:" destination="u3m-su-ZIZ" id="S4J-ny-eUC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -734,7 +734,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Sign out" id="0Db-uS-Jtl">
                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="signOutTapped:" destination="u3m-su-ZIZ" id="M9K-TV-l0H"/>
+                                <action selector="signOutTapped:" destination="2HY-M3-gfu" id="OBJ-I8-8b2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -755,7 +755,7 @@
             </objects>
             <point key="canvasLocation" x="3686" y="1785"/>
         </scene>
-        <!--Favourite Books-->
+        <!--Favorite Books-->
         <scene sceneID="54V-iU-VaS">
             <objects>
                 <viewController id="jaB-la-4ay" customClass="FavouritesViewController" customModule="DiplomaProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -778,7 +778,7 @@
                             <constraint firstItem="hKP-x9-Tbg" firstAttribute="trailing" secondItem="lmT-RN-ENu" secondAttribute="trailing" id="xEy-hu-pHX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Favourite Books" id="alE-x6-vdm">
+                    <navigationItem key="navigationItem" title="Favorite Books" id="alE-x6-vdm">
                         <barButtonItem key="rightBarButtonItem" title="Sign out" id="8gr-X4-qhZ">
                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -797,7 +797,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="C6e-5G-LLY"/>
+        <segue reference="VgQ-AA-sLB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.forward.fill" catalog="system" width="128" height="106"/>
@@ -807,6 +807,9 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -37,6 +37,7 @@
 		92E4804428301DB4001481B9 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4804328301DB4001481B9 /* OnboardingView.swift */; };
 		92E4804B283AC876001481B9 /* UIImageView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4804A283AC876001481B9 /* UIImageView+Helpers.swift */; };
 		92E48052283ADAC8001481B9 /* BaseBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48051283ADAC8001481B9 /* BaseBooksViewController.swift */; };
+		92E48054283AEAA6001481B9 /* BaseBookSignOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48053283AEAA6001481B9 /* BaseBookSignOutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		92E4804328301DB4001481B9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		92E4804A283AC876001481B9 /* UIImageView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Helpers.swift"; sourceTree = "<group>"; };
 		92E48051283ADAC8001481B9 /* BaseBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBooksViewController.swift; sourceTree = "<group>"; };
+		92E48053283AEAA6001481B9 /* BaseBookSignOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBookSignOutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +109,7 @@
 			children = (
 				9207FC962810ACAF008C7CA4 /* Constants */,
 				9207FC8E2810A23A008C7CA4 /* Models */,
-				9207FC922810A8DB008C7CA4 /* View */,
+				9207FC922810A8DB008C7CA4 /* ViewControllers */,
 				9207FC7F280DE3D5008C7CA4 /* Storyboard */,
 				92E48049283AC862001481B9 /* Extensions */,
 				9207FC74280DDFE7008C7CA4 /* Assets.xcassets */,
@@ -146,14 +148,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		9207FC922810A8DB008C7CA4 /* View */ = {
+		9207FC922810A8DB008C7CA4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				92E48050283ADA62001481B9 /* Common */,
-				92E4804F283ADA30001481B9 /* ViewController */,
+				92E48050283ADA62001481B9 /* Onboarding */,
+				92E48056283AF199001481B9 /* Login */,
+				92E4804F283ADA30001481B9 /* Base */,
+				92E48057283AF1C9001481B9 /* Main */,
+				92E48058283AF21D001481B9 /* DetailBook */,
+				92E48059283AF23B001481B9 /* MyBook */,
+				92E48055283AF11D001481B9 /* Image */,
 				92E4804D283AD9B5001481B9 /* Cell */,
 			);
-			path = View;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		9207FC962810ACAF008C7CA4 /* Constants */ = {
@@ -187,28 +194,64 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		92E4804F283ADA30001481B9 /* ViewController */ = {
+		92E4804F283ADA30001481B9 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				92E48053283AEAA6001481B9 /* BaseBookSignOutViewController.swift */,
 				92E48051283ADAC8001481B9 /* BaseBooksViewController.swift */,
-				92E480412830021C001481B9 /* OnboardingViewController.swift */,
-				9207FC942810AC5C008C7CA4 /* LoginViewController.swift */,
-				9207FCBA281C8684008C7CA4 /* BooksViewController.swift */,
-				9207FCC4281D90FD008C7CA4 /* MyBooksViewController.swift */,
-				9207FCCB2826BD78008C7CA4 /* FavouritesViewController.swift */,
-				9207FCC7281EA456008C7CA4 /* DetailBookViewController.swift */,
-				9207FCC92824492A008C7CA4 /* MyBookViewController.swift */,
 			);
-			path = ViewController;
+			path = Base;
 			sourceTree = "<group>";
 		};
-		92E48050283ADA62001481B9 /* Common */ = {
+		92E48050283ADA62001481B9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				92E480412830021C001481B9 /* OnboardingViewController.swift */,
+				92E4804328301DB4001481B9 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		92E48055283AF11D001481B9 /* Image */ = {
 			isa = PBXGroup;
 			children = (
 				9207FCCE28284667008C7CA4 /* ImagePicker.swift */,
-				92E4804328301DB4001481B9 /* OnboardingView.swift */,
 			);
-			path = Common;
+			path = Image;
+			sourceTree = "<group>";
+		};
+		92E48056283AF199001481B9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9207FC942810AC5C008C7CA4 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		92E48057283AF1C9001481B9 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9207FCBA281C8684008C7CA4 /* BooksViewController.swift */,
+				9207FCC4281D90FD008C7CA4 /* MyBooksViewController.swift */,
+				9207FCCB2826BD78008C7CA4 /* FavouritesViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		92E48058283AF21D001481B9 /* DetailBook */ = {
+			isa = PBXGroup;
+			children = (
+				9207FCC7281EA456008C7CA4 /* DetailBookViewController.swift */,
+			);
+			path = DetailBook;
+			sourceTree = "<group>";
+		};
+		92E48059283AF23B001481B9 /* MyBook */ = {
+			isa = PBXGroup;
+			children = (
+				9207FCC92824492A008C7CA4 /* MyBookViewController.swift */,
+			);
+			path = MyBook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +401,7 @@
 				92E4804428301DB4001481B9 /* OnboardingView.swift in Sources */,
 				9207FCC3281D90D0008C7CA4 /* BookTableViewCell.swift in Sources */,
 				92E4804B283AC876001481B9 /* UIImageView+Helpers.swift in Sources */,
+				92E48054283AEAA6001481B9 /* BaseBookSignOutViewController.swift in Sources */,
 				9207FC982810ACEA008C7CA4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +555,7 @@
 				DEVELOPMENT_TEAM = 644WQVY3HU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiplomaProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BooksAD;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -541,6 +586,7 @@
 				DEVELOPMENT_TEAM = 644WQVY3HU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiplomaProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BooksAD;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
